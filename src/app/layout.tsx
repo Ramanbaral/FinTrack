@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -24,7 +25,9 @@ export default function RootLayout({
       <body
         className={`${outfit.variable}`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="light">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
