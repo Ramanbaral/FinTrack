@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import {
+  ClerkProvider
+} from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -7,7 +10,7 @@ const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["200", "300", "400", "700", "900"],
-})
+});
 
 export const metadata: Metadata = {
   title: "FinTrack",
@@ -21,14 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${outfit.variable}`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${outfit.variable}`}>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
