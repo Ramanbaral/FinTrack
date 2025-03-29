@@ -20,7 +20,7 @@ export default function Hero() {
         <Button
           size="lg"
           className="bg-blue-600 hover:bg-blue-500 my-[2rem] cursor-pointer"
-          >
+        >
           Get Started Now <LogIn />
         </Button>
       </Link>
