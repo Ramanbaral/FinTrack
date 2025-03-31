@@ -4,7 +4,6 @@ import { LayoutGrid, PiggyBank, ReceiptText, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 export default function SideNav() {
   const menuList = [
@@ -35,9 +34,6 @@ export default function SideNav() {
   ];
 
   const path = usePathname();
-  useEffect(() => {
-    console.log(path);
-  }, []);
 
   return (
     <div className="h-screen flex flex-col items-start border shadow-sm p-4 bg-gray-100">
