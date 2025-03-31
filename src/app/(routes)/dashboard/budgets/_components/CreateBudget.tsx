@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { useUser } from "@clerk/nextjs";
 import { createNewBudget } from "../../actions/actions";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 export default function CreateBudget() {
   const [emoji, setEmoji] = useState("😄");
@@ -40,29 +41,27 @@ export default function CreateBudget() {
           <DialogTitle>Create New Budget</DialogTitle>
         </DialogHeader>
 
-        <form
-          action={(formData) => {
-            const st = createNewBudget(formData, { emoji, emailAddress });
-            console.log(st);
-          }}
-        >
-          <div className="my-5">
-            <Button
-              variant="outline"
-              size={"lg"}
-              className="text-lg"
-              onClick={() => setOpenEmojiDialog(!openEmojiDialog)}
-            >
-              {emoji}
-            </Button>
-            <div className="absolute">
-              <EmojiPicker
-                open={openEmojiDialog}
-                onEmojiClick={(e) => {
-                  setEmoji(e.emoji);
-                  setOpenEmojiDialog(false);
-                }}
-              />
+        <form>
+          <div>
+            <div className="my-1">
+              <Button
+                type="button"
+                variant="outline"
+                size={"lg"}
+                className="text-lg"
+                onClick={() => setOpenEmojiDialog(!openEmojiDialog)}
+              >
+                {emoji}
+              </Button>
+              <div className="absolute">
+                <EmojiPicker
+                  open={openEmojiDialog}
+                  onEmojiClick={(e) => {
+                    setEmoji(e.emoji);
+                    setOpenEmojiDialog(false);
+                  }}
+                />
+              </div>
             </div>
 
             <div className="mt-5">
@@ -93,23 +92,30 @@ export default function CreateBudget() {
                 autoComplete="off"
               />
             </div>
-          </div>
 
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button
-                type="submit"
-                className="cursor-pointer"
-                disabled={!(budgetName && amount)}
-                onClick={() => {
-                  setBudgetName('');
-                  setAmount('');
-                }}
-              >
-                Create Budget
-              </Button>
-            </DialogClose>
-          </DialogFooter>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button
+                  type="submit"
+                  className="cursor-pointer mt-5"
+                  disabled={!(budgetName && amount)}
+                  onSubmit={(e) => e.preventDefault()}
+                  onClick={async () => {
+                    const st = await createNewBudget({budgetName, amount, emoji, emailAddress });
+                    if (st != 1) {
+                      toast(`Successfully Created New Budget : ${budgetName}`);
+                    } else {
+                      toast.error("Problem creating new budget");
+                    }
+                    setBudgetName("");
+                    setAmount("");
+                  }}
+                >
+                  Create Budget
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

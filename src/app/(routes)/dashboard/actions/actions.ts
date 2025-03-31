@@ -2,14 +2,13 @@
 import { prisma } from "@/lib/prisma";
 
 export async function createNewBudget(
-  formData: FormData,
-  { emoji, emailAddress }: { emoji: string; emailAddress: string | undefined }
+  { budgetName, amount, emoji, emailAddress }: { budgetName: string, amount: string, emoji: string; emailAddress: string | undefined }
 ) {
   try {
     await prisma.budgets.create({
       data: {
-        name: formData.get("budgetname") as string,
-        amount: formData.get("amount") as string,
+        name: budgetName,
+        amount: amount,
         icon: emoji,
         createdBy: emailAddress as string,
       },
