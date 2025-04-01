@@ -1,11 +1,19 @@
-"use server"
+"use server";
 import { prisma } from "@/lib/prisma";
 
-export async function createNewBudget(
-  { budgetName, amount, emoji, emailAddress }: { budgetName: string, amount: string, emoji: string; emailAddress: string | undefined }
-) {
+export async function createNewBudget({
+  budgetName,
+  amount,
+  emoji,
+  emailAddress,
+}: {
+  budgetName: string;
+  amount: string;
+  emoji: string;
+  emailAddress: string | undefined;
+}) {
   try {
-    await prisma.budgets.create({
+    await prisma.budget.create({
       data: {
         name: budgetName,
         amount: amount,
@@ -15,7 +23,7 @@ export async function createNewBudget(
     });
 
     return 0;
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     return 1;
   }

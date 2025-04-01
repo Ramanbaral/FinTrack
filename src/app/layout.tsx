@@ -27,7 +27,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${outfit.variable}`}>
           <ThemeProvider attribute="class" defaultTheme="light">
-            <Toaster />
+            <Toaster richColors />
             {children}
           </ThemeProvider>
         </body>

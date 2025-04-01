@@ -36,7 +36,7 @@ export default function CreateBudget() {
           <div className="text-[1.25rem] font-semibold">New Budget</div>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px]" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Create New Budget</DialogTitle>
         </DialogHeader>
@@ -53,7 +53,7 @@ export default function CreateBudget() {
               >
                 {emoji}
               </Button>
-              <div className="absolute">
+              <div className="absolute z-10">
                 <EmojiPicker
                   open={openEmojiDialog}
                   onEmojiClick={(e) => {
@@ -99,9 +99,15 @@ export default function CreateBudget() {
                   type="submit"
                   className="cursor-pointer mt-5"
                   disabled={!(budgetName && amount)}
-                  onSubmit={(e) => e.preventDefault()}
-                  onClick={async () => {
-                    const st = await createNewBudget({budgetName, amount, emoji, emailAddress });
+                  // onSubmit={(e) => e.preventDefault()}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    const st = await createNewBudget({
+                      budgetName,
+                      amount,
+                      emoji,
+                      emailAddress,
+                    });
                     if (st != 1) {
                       toast(`Successfully Created New Budget : ${budgetName}`);
                     } else {

@@ -11,12 +11,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model budgets {
+model Budget {
   id Int @id @default(autoincrement())
   name String @db.VarChar(255)
   amount String 
   icon String? 
   createdBy String @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expenses Expense[]
+}
+
+model Expense {
+  id Int @id @default(autoincrement())
+  name String
+  amount String 
+  budget Budget @relation(fields: [budgetId], references: [id])
+  budgetId Int 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

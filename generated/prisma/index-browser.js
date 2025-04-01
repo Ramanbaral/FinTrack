@@ -117,12 +117,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.BudgetsScalarFieldEnum = {
+exports.Prisma.BudgetScalarFieldEnum = {
   id: 'id',
   name: 'name',
   amount: 'amount',
   icon: 'icon',
   createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExpenseScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  amount: 'amount',
+  budgetId: 'budgetId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -144,7 +153,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  budgets: 'budgets'
+  Budget: 'Budget',
+  Expense: 'Expense'
 };
 
 /**
