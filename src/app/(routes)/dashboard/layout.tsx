@@ -5,16 +5,6 @@ import DashboardHeader from "./_components/DashboardHeader";
 export default async function DashboardLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
-  // const result = await prisma.budgets.findFirst({
-  //   where: {
-  //     createdBy: {
-  //       equals: user?.primaryEmailAddress?.emailAddress,
-  //       // equals: "ramanisstudent@gmail.com"
-  //     },
-  //   },
-  // });
-  // console.log(result);
-
   return (
     <div>
       <div className="fixed hidden md:w-64 md:block">

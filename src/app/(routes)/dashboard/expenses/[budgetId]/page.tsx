@@ -3,7 +3,7 @@ import BudgetCard from "../../budgets/_components/BudgetCard";
 import AddExpense from "../_components/AddExpense";
 import ExpenseTable from "../_components/ExpenseTable";
 import DeleteButton from "../_components/DeleteButton";
-import EditButton from "../_components/EditButton";
+import EditBudget from "../_components/EditBudget";
 
 export default async function Expenses({
   params,
@@ -26,7 +26,10 @@ export default async function Expenses({
 
     return (
       <>
-        <DeleteButton budgetId={+budgetId} />
+        <div className="absolute right-6 flex gap-3 m-5">
+          <EditBudget id={budget.id} name={budget.name} amt={budget.amount} icon={budget.icon} />
+          <DeleteButton budgetId={+budgetId} />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 gap-10 mt-5">
           {budget ? (
             <div className="h-[66%]">

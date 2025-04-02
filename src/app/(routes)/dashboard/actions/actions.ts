@@ -36,10 +36,28 @@ export async function deleteBudget(id: number) {
         budgetId: id
       }
     })
-    
+
     await prisma.budget.delete({
       where: {
         id: id
+      }
+    })
+    return 0;
+  } catch(err) {
+    console.error(err);
+    return 1;
+  }
+}
+
+export async function updateBudget(id: number, newName: string, newAmount: string, newIcon: string | null) {
+  try{
+    await prisma.budget.update({
+      where: {
+        id: id
+      }, data: {
+        name: newName,
+        amount: newAmount,
+        icon: newIcon
       }
     })
     return 0;
