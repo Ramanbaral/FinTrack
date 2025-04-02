@@ -15,7 +15,7 @@ export default function BudgetCard({
   const amountSpentPercentage = amountSpent/parseInt(amount) * 100;
 
   return (
-    <div className="p-5 bg-slate-100 cursor-pointer rounded-md border-2 hover:shadow-md">
+    <div className="p-5 bg-slate-100 cursor-pointer rounded-md border-2">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-5">
           <div className="text-4xl">
@@ -39,7 +39,7 @@ export default function BudgetCard({
         </div>
 
         <div className="mt-2 w-full h-3 bg-green-400 rounded-full">
-          <div className={`w-[${amountSpentPercentage}%] h-3 bg-red-400 rounded-l-lg rounded-r-sm`}>
+          <div className={`h-3 bg-red-400 rounded-l-lg rounded-r-sm`} style={{width: `${amountSpentPercentage}%`}}>
           </div>
         </div>
       </div>

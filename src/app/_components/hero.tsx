@@ -6,10 +6,10 @@ export default function Hero() {
   return (
     <div className="flex flex-col justify-center items-center gap-3 h-[90vh] bg-radial-(circle, rgba(238,174,202,1)0%,rgba(148,187,233,1) 100%)">
       {/* hero main text  */}
-      <p className="font-bold text-5xl md:text-7xl lg:text-9xl">
+      <p className="font-bold text-5xl md:text-7xl lg:text-9xl animate-pulse delay-50" style={{animationIterationCount: 1}}>
         Manage Your Expense
       </p>
-      <p className="font-bold text-5xl md:text-7xl lg:text-9xl">
+      <p className="font-bold text-5xl md:text-7xl lg:text-9xl animate-pulse delay-50" style={{animationIterationCount: 1}}>
         Track Your Money
       </p>
 

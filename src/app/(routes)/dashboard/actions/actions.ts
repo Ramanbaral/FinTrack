@@ -24,7 +24,32 @@ export async function createNewBudget({
 
     return 0;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return 1;
+  }
+}
+
+export async function createNewExpense({
+  name,
+  amount,
+  budgetId,
+}: {
+  name: string;
+  amount: string;
+  budgetId: number;
+}) {
+  try {
+    await prisma.expense.create({
+      data: {
+        name: name,
+        amount: amount,
+        budgetId: budgetId,
+      },
+    });
+
+    return 0;
+  } catch (err) {
+    console.error(err);
     return 1;
   }
 }
