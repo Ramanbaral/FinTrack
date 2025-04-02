@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import BudgetCard from "../../budgets/_components/BudgetCard";
 import AddExpense from "../_components/AddExpense";
 import ExpenseTable from "../_components/ExpenseTable";
+import DeleteButton from "../_components/DeleteButton";
+import EditButton from "../_components/EditButton";
 
 export default async function Expenses({
   params,
@@ -24,6 +26,7 @@ export default async function Expenses({
 
     return (
       <>
+        <DeleteButton budgetId={+budgetId} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 gap-10 mt-5">
           {budget ? (
             <div className="h-[66%]">
@@ -41,12 +44,13 @@ export default async function Expenses({
           <div className="w-[50%] ml-32 col-span-2">
             <AddExpense budgetId={+budgetId} />
           </div>
-
         </div>
-          <div className="px-10">
-            <h2 className="font-semibold text-4xl text-primary p-2">Latest Expenses</h2>
-            <ExpenseTable expenses={budget.expenses} />
-          </div>
+        <div className="px-10">
+          <h2 className="font-semibold text-4xl text-primary p-2">
+            Latest Expenses
+          </h2>
+          <ExpenseTable expenses={budget.expenses} />
+        </div>
       </>
     );
   } catch (err) {

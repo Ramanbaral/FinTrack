@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import { Trash2 } from "lucide-react";
 import { deleteExpense } from "../../actions/actions";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ExpenseTable({
   expenses,
@@ -41,20 +42,24 @@ export default function ExpenseTable({
                     {expense.name}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">
-                    {expense.amount}
+                    ₹ {expense.amount}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">
                     {expense.createdAt.toLocaleDateString()}
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">
-                    <Trash2 className="text-red-500 cursor-pointer" onClick={async () => {
-                      const st = await deleteExpense(expense.id)
-                      if(st == 0) {
-                        setExpenseList((prevState) => {
-                          return prevState.filter((e) => e.id != expense.id);
-                        })
-                      }
-                      }}/>
+                    <Trash2
+                      className="text-red-500 cursor-pointer"
+                      onClick={async () => {
+                        const st = await deleteExpense(expense.id);
+                        if (st == 0) {
+                          setExpenseList((prevState) => {
+                            return prevState.filter((e) => e.id != expense.id);
+                          });
+                          toast.success("Expense Deleted.");
+                        }
+                      }}
+                    />
                   </td>
                 </tr>
               );

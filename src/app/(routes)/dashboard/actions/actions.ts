@@ -29,6 +29,26 @@ export async function createNewBudget({
   }
 }
 
+export async function deleteBudget(id: number) {
+  try {
+    await prisma.expense.deleteMany({
+      where: {
+        budgetId: id
+      }
+    })
+    
+    await prisma.budget.delete({
+      where: {
+        id: id
+      }
+    })
+    return 0;
+  } catch(err) {
+    console.error(err);
+    return 1;
+  }
+}
+
 export async function createNewExpense({
   name,
   amount,
