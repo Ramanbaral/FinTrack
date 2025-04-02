@@ -16,7 +16,7 @@ export default function BudgetCard({
 
   return (
     <div className="p-5 bg-slate-100 cursor-pointer rounded-md border-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between">
         <div className="flex items-center gap-5">
           <div className="text-4xl">
             {icon}

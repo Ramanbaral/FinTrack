@@ -19,11 +19,16 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
         } else {
           toast.error("Problem Creating New Expense");
         }
+        setAmount("");
+        setName("");
       }}
     >
       <div className="p-2 bg-slate-100 flex flex-col justify-center items-center gap-2 rounded-md border-2">
+        <p className="text-center text-primary text-xl font-semibold">
+          Create New Expense
+        </p>
         <div className="mt-1">
-          <Label htmlFor="budgetname" className="text-1xl">
+          <Label htmlFor="budgetname" className="text-[1rem]">
             Expense Name
           </Label>
           <Input
@@ -39,7 +44,9 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
         </div>
 
         <div className="mt-1">
-          <Label htmlFor="amount">Amount</Label>
+          <Label htmlFor="amount" className="text-[1rem]">
+            Amount
+          </Label>
           <Input
             className="my-1 w-[20rem]"
             name="amount"
@@ -55,12 +62,12 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
 
         <Button
           type="submit"
-          className="cursor-pointer mt-3"
-          onSubmit={(e) => {e.preventDefault();
-            setName("");
-            setAmount("");
+          className="cursor-pointer mt-3 w-[10rem]"
+          onSubmit={(e) => {
+            e.preventDefault();
           }}
           disabled={!(name && amount)}
+          size={"lg"}
         >
           Add Expense
         </Button>

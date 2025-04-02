@@ -28,13 +28,15 @@ export default async function Expenses({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 gap-4">
           {budget ? (
-            <BudgetCard
-              name={budget.name}
-              amount={budget.amount}
-              icon={budget.icon}
-              expenseCount={budget?.expenses.length}
-              amountSpent={totalAmountSpent}
-            />
+            <div className="h-[66%]">
+              <BudgetCard
+                name={budget.name}
+                amount={budget.amount}
+                icon={budget.icon}
+                expenseCount={budget?.expenses.length}
+                amountSpent={totalAmountSpent}
+              />
+            </div>
           ) : (
             <div className="h-[150px] w-3xl bg-slate-200 rounded-lg animate-pulse"></div>
           )}

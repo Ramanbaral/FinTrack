@@ -41,7 +41,23 @@ export default function CreateBudget() {
           <DialogTitle>Create New Budget</DialogTitle>
         </DialogHeader>
 
-        <form>
+        <form action={
+          async () => {
+            const st = await createNewBudget({
+              budgetName,
+              amount,
+              emoji,
+              emailAddress,
+            });
+            if (st != 1) {
+              toast.success(`Successfully Created New Budget : ${budgetName}`);
+            } else {
+              toast.error("Problem creating new budget");
+            }
+            setBudgetName("");
+            setAmount("");
+          }
+        }>
           <div>
             <div className="my-1">
               <Button
@@ -99,23 +115,7 @@ export default function CreateBudget() {
                   type="submit"
                   className="cursor-pointer mt-5"
                   disabled={!(budgetName && amount)}
-                  // onSubmit={(e) => e.preventDefault()}
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    const st = await createNewBudget({
-                      budgetName,
-                      amount,
-                      emoji,
-                      emailAddress,
-                    });
-                    if (st != 1) {
-                      toast(`Successfully Created New Budget : ${budgetName}`);
-                    } else {
-                      toast.error("Problem creating new budget");
-                    }
-                    setBudgetName("");
-                    setAmount("");
-                  }}
+                  onSubmit={(e) => e.preventDefault()}
                 >
                   Create Budget
                 </Button>
