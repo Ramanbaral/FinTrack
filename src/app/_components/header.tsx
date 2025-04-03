@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useUser, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Header() {
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
 
   return (
     <div className="flex justify-between items-center px-7 shadow-sm h-[10vh]">
@@ -16,7 +16,7 @@ export default function Header() {
       {isSignedIn ? (
         <UserButton />
       ) : (
-        <Link href={'/sign-in'}>
+        <Link href={"/sign-in"}>
           <Button className="bg-blue-600 hover:bg-blue-500 cursor-pointer">
             Get Started
           </Button>
