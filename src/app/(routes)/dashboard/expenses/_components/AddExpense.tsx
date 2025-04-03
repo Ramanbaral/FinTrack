@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { createNewExpense } from "../../actions/actions";
 import { toast } from "sonner";
+import AddExpenseButton from "./AddExpenseButton";
 
 export default function AddExpense({ budgetId }: { budgetId: number }) {
   const [name, setName] = useState("");
@@ -60,17 +60,7 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
           />
         </div>
 
-        <Button
-          type="submit"
-          className="cursor-pointer mt-3 w-[10rem]"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          disabled={!(name && amount)}
-          size={"lg"}
-        >
-          Add Expense
-        </Button>
+        <AddExpenseButton name={name} amount={amount} />
       </div>
     </form>
   );
