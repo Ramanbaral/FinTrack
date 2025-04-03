@@ -5,10 +5,12 @@ import { Label } from "@/components/ui/label";
 import { createNewExpense } from "../../actions/actions";
 import { toast } from "sonner";
 import AddExpenseButton from "./AddExpenseButton";
+import { useRouter } from "next/navigation";
 
 export default function AddExpense({ budgetId }: { budgetId: number }) {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const router = useRouter();
 
   return (
     <form
@@ -16,6 +18,7 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
         const st = await createNewExpense({ name, amount, budgetId });
         if (st == 0) {
           toast.success("New Expense Added");
+          router.refresh();
         } else {
           toast.error("Problem Creating New Expense");
         }

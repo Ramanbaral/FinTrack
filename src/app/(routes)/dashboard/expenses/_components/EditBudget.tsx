@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { updateBudget } from "../../actions/actions";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function EditBudget({
   id,
@@ -31,6 +32,7 @@ export default function EditBudget({
   const [openEmojiDialog, setOpenEmojiDialog] = useState(false);
   const [budgetName, setBudgetName] = useState(name);
   const [amount, setAmount] = useState(amt);
+  const router = useRouter();
 
   return (
     <Dialog>
@@ -50,6 +52,7 @@ export default function EditBudget({
             const st = await updateBudget(id, budgetName, amount, emoji);
             if (st == 0) {
               toast.success("Successfully Edited Budget");
+              router.refresh();
             } else {
               toast.error("Problem Editing Budget");
             }

@@ -16,12 +16,14 @@ import { useUser } from "@clerk/nextjs";
 import { createNewBudget } from "../../actions/actions";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function CreateBudget() {
   const [emoji, setEmoji] = useState("😄");
   const [openEmojiDialog, setOpenEmojiDialog] = useState(false);
   const [budgetName, setBudgetName] = useState("");
   const [amount, setAmount] = useState("");
+  const router = useRouter();
 
   const { user } = useUser();
   const emailAddress = user?.primaryEmailAddress?.emailAddress;
@@ -49,8 +51,9 @@ export default function CreateBudget() {
               emoji,
               emailAddress,
             });
-            if (st != 1) {
+            if (st == 0) {
               toast.success(`Successfully Created New Budget : ${budgetName}`);
+              router.refresh();
             } else {
               toast.error("Problem creating new budget");
             }

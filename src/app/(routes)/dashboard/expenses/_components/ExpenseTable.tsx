@@ -1,8 +1,8 @@
 "use client";
 import { Trash2 } from "lucide-react";
 import { deleteExpense } from "../../actions/actions";
-import { useState } from "react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function ExpenseTable({
   expenses,
@@ -16,7 +16,8 @@ export default function ExpenseTable({
     budgetId: number;
   }[];
 }) {
-  const [expenseList, setExpenseList] = useState(expenses);
+  // const [expenseList, setExpenseList] = useState(expenses);
+  const router = useRouter();
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function ExpenseTable({
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {expenseList.map((expense) => {
+            {expenses.map((expense) => {
               return (
                 <tr
                   className="*:text-gray-900 *:first:font-medium"
@@ -53,10 +54,10 @@ export default function ExpenseTable({
                       onClick={async () => {
                         const st = await deleteExpense(expense.id);
                         if (st == 0) {
-                          setExpenseList((prevState) => {
-                            return prevState.filter((e) => e.id != expense.id);
-                          });
                           toast.success("Expense Deleted.");
+                          router.refresh();
+                        } else {
+                          toast.error("Problem Deleting Expense.");
                         }
                       }}
                     />

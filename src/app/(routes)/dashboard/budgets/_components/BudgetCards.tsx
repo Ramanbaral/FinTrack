@@ -44,7 +44,7 @@ export default async function BudgetCards() {
               />
             </Link>
           );
-        })}
+        })} 
       </div>
     </div>
   );
