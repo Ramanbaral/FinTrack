@@ -1,8 +1,8 @@
-import { UserButton } from "@clerk/nextjs";
+import { UserButton } from '@clerk/nextjs';
 
 export default function DashboardHeader() {
   return (
-    <div className="p-5 px-10 shadow-sm border-b flex justify-between items-center bg-gray-100">
+    <div className="flex items-center justify-between border-b bg-gray-100 p-5 px-10 shadow-sm">
       <div>{/*search bar*/}</div>
 
       <div className="">

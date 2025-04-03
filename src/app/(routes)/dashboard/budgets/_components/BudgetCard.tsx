@@ -3,7 +3,7 @@ export default function BudgetCard({
   amount,
   icon,
   amountSpent,
-  expenseCount
+  expenseCount,
 }: {
   name: string;
   amount: string;
@@ -11,36 +11,35 @@ export default function BudgetCard({
   amountSpent: number;
   expenseCount: number;
 }) {
-
-  const amountSpentPercentage = amountSpent/parseInt(amount) * 100;
+  const amountSpentPercentage = (amountSpent / parseInt(amount)) * 100;
 
   return (
-    <div className="p-5 bg-slate-100 cursor-pointer rounded-md border-2">
+    <div className="cursor-pointer rounded-md border-2 bg-slate-100 p-5">
       <div className="flex justify-between">
         <div className="flex items-center gap-5">
-          <div className="text-4xl">
-            {icon}
-          </div>
+          <div className="text-4xl">{icon}</div>
           <div className="">
-            <p className="text-2xl font-semibold m-0 p-0">{name}</p>
-            <p className="text-gray-500 m-0 p-0">{expenseCount} Items</p>
+            <p className="m-0 p-0 text-2xl font-semibold">{name}</p>
+            <p className="m-0 p-0 text-gray-500">{expenseCount} Items</p>
           </div>
         </div>
 
         <div>
-          <span className="text-[1.4rem] text-primary font-semibold">₹ {amount}</span>
+          <span className="text-primary text-[1.4rem] font-semibold">₹ {amount}</span>
         </div>
       </div>
 
       <div className="mt-5">
-        <div className="text-[1.15rem] flex justify-between items-center">
+        <div className="flex items-center justify-between text-[1.15rem]">
           <p className="text-red-400">₹ {amountSpent} Spent</p>
           <p className="text-green-400">₹ {parseInt(amount) - amountSpent} Remaining</p>
         </div>
 
-        <div className="mt-2 w-full h-3 bg-green-400 rounded-full">
-          <div className={`h-3 bg-red-400 rounded-l-lg rounded-r-sm`} style={{width: `${amountSpentPercentage}%`}}>
-          </div>
+        <div className="mt-2 h-3 w-full rounded-full bg-green-400">
+          <div
+            className={`h-3 rounded-l-lg rounded-r-sm bg-red-400`}
+            style={{ width: `${amountSpentPercentage}%` }}
+          ></div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-"use server";
-import { prisma } from "@/lib/prisma";
+'use server';
+import { prisma } from '@/lib/prisma';
 
 export async function createNewBudget({
   budgetName,
@@ -33,35 +33,41 @@ export async function deleteBudget(id: number) {
   try {
     await prisma.expense.deleteMany({
       where: {
-        budgetId: id
-      }
-    })
+        budgetId: id,
+      },
+    });
 
     await prisma.budget.delete({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     return 0;
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     return 1;
   }
 }
 
-export async function updateBudget(id: number, newName: string, newAmount: string, newIcon: string | null) {
-  try{
+export async function updateBudget(
+  id: number,
+  newName: string,
+  newAmount: string,
+  newIcon: string | null,
+) {
+  try {
     await prisma.budget.update({
       where: {
-        id: id
-      }, data: {
+        id: id,
+      },
+      data: {
         name: newName,
         amount: newAmount,
-        icon: newIcon
-      }
-    })
+        icon: newIcon,
+      },
+    });
     return 0;
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     return 1;
   }

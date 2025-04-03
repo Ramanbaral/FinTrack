@@ -1,5 +1,5 @@
-import { SignIn } from "@clerk/nextjs";
-import Image from "next/image";
+import { SignIn } from '@clerk/nextjs';
+import Image from 'next/image';
 
 export default function signin() {
   return (
@@ -15,7 +15,7 @@ export default function signin() {
           <div className="hidden lg:relative lg:block lg:p-12">
             <a className="block text-white" href="#">
               <span className="sr-only">Home</span>
-              <Image src={"/logo.png"} alt="LOGO" width={100} height={100} />
+              <Image src={'/logo.png'} alt="LOGO" width={100} height={100} />
             </a>
 
             <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
@@ -23,11 +23,10 @@ export default function signin() {
             </h2>
 
             <p className="mt-4 leading-relaxed text-white/90">
-              FinTrack is a smart and intuitive expense tracker designed to help
-              you manage your finances effortlessly. With real-time insights,
-              budget tracking, and expense categorization, it keeps you in
-              control of your spending. Stay on top of your financial goals and
-              make informed decisions with FinTrack.
+              FinTrack is a smart and intuitive expense tracker designed to help you manage your
+              finances effortlessly. With real-time insights, budget tracking, and expense
+              categorization, it keeps you in control of your spending. Stay on top of your
+              financial goals and make informed decisions with FinTrack.
             </p>
           </div>
         </section>
@@ -47,11 +46,10 @@ export default function signin() {
               </h1>
 
               <p className="mt-4 leading-relaxed text-gray-500">
-                FinTrack is a smart and intuitive expense tracker designed to
-                help you manage your finances effortlessly. With real-time
-                insights, budget tracking, and expense categorization, it keeps
-                you in control of your spending. Stay on top of your financial
-                goals and make informed decisions with FinTrack.
+                FinTrack is a smart and intuitive expense tracker designed to help you manage your
+                finances effortlessly. With real-time insights, budget tracking, and expense
+                categorization, it keeps you in control of your spending. Stay on top of your
+                financial goals and make informed decisions with FinTrack.
               </p>
             </div>
 

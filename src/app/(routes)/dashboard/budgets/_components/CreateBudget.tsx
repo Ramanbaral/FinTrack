@@ -1,7 +1,7 @@
-"use client";
-import { useState } from "react";
-import { PlusIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+'use client';
+import { useState } from 'react';
+import { PlusIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,20 +9,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import EmojiPicker from "emoji-picker-react";
-import { Input } from "@/components/ui/input";
-import { useUser } from "@clerk/nextjs";
-import { createNewBudget } from "../../actions/actions";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/dialog';
+import EmojiPicker from 'emoji-picker-react';
+import { Input } from '@/components/ui/input';
+import { useUser } from '@clerk/nextjs';
+import { createNewBudget } from '../../actions/actions';
+import { DialogClose } from '@radix-ui/react-dialog';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function CreateBudget() {
-  const [emoji, setEmoji] = useState("😄");
+  const [emoji, setEmoji] = useState('😄');
   const [openEmojiDialog, setOpenEmojiDialog] = useState(false);
-  const [budgetName, setBudgetName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [budgetName, setBudgetName] = useState('');
+  const [amount, setAmount] = useState('');
   const router = useRouter();
 
   const { user } = useUser();
@@ -31,9 +31,9 @@ export default function CreateBudget() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="p-10 bg-slate-100 flex flex-col justify-center items-center gap-2 rounded-md border-2 border-dashed cursor-pointer hover:shadow-md">
+        <div className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed bg-slate-100 p-10 hover:shadow-md">
           <div>
-            <PlusIcon size={"50px"} />
+            <PlusIcon size={'50px'} />
           </div>
           <div className="text-[1.25rem] font-semibold">New Budget</div>
         </div>
@@ -43,8 +43,8 @@ export default function CreateBudget() {
           <DialogTitle>Create New Budget</DialogTitle>
         </DialogHeader>
 
-        <form action={
-          async () => {
+        <form
+          action={async () => {
             const st = await createNewBudget({
               budgetName,
               amount,
@@ -55,18 +55,18 @@ export default function CreateBudget() {
               toast.success(`Successfully Created New Budget : ${budgetName}`);
               router.refresh();
             } else {
-              toast.error("Problem creating new budget");
+              toast.error('Problem creating new budget');
             }
-            setBudgetName("");
-            setAmount("");
-          }
-        }>
+            setBudgetName('');
+            setAmount('');
+          }}
+        >
           <div>
             <div className="my-1">
               <Button
                 type="button"
                 variant="outline"
-                size={"lg"}
+                size={'lg'}
                 className="text-lg"
                 onClick={() => setOpenEmojiDialog(!openEmojiDialog)}
               >
@@ -116,7 +116,7 @@ export default function CreateBudget() {
               <DialogClose asChild>
                 <Button
                   type="submit"
-                  className="cursor-pointer mt-5"
+                  className="mt-5 cursor-pointer"
                   disabled={!(budgetName && amount)}
                   onSubmit={(e) => e.preventDefault()}
                 >

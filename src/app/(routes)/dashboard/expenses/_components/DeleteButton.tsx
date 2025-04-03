@@ -1,6 +1,6 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Trash2 } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,21 +11,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { deleteBudget } from "../../actions/actions";
-import { redirect } from "next/navigation";
-import { toast } from "sonner";
+} from '@/components/ui/alert-dialog';
+import { deleteBudget } from '../../actions/actions';
+import { redirect } from 'next/navigation';
+import { toast } from 'sonner';
 
 export default function DeleteButton({ budgetId }: { budgetId: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <div>
-          <Button
-            size={"lg"}
-            variant={"destructive"}
-            className="cursor-pointer"
-          >
+          <Button size={'lg'} variant={'destructive'} className="cursor-pointer">
             <Trash2 /> DELETE
           </Button>
         </div>
@@ -34,8 +30,8 @@ export default function DeleteButton({ budgetId }: { budgetId: number }) {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete budget
-            and remove data from our servers.
+            This action cannot be undone. This will permanently delete budget and remove data from
+            our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -45,10 +41,10 @@ export default function DeleteButton({ budgetId }: { budgetId: number }) {
               e.preventDefault();
               const st = await deleteBudget(budgetId);
               if (st == 0) {
-                toast.success("Budget Removed");
-                redirect("/dashboard/budgets");
+                toast.success('Budget Removed');
+                redirect('/dashboard/budgets');
               } else {
-                toast.error("Problem Deleting Budget");
+                toast.error('Problem Deleting Budget');
               }
             }}
           >

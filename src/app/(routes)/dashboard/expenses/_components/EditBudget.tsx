@@ -1,7 +1,7 @@
-"use client";
-import { useState } from "react";
-import { Edit2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+'use client';
+import { useState } from 'react';
+import { Edit2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,13 +9,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import EmojiPicker from "emoji-picker-react";
-import { Input } from "@/components/ui/input";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { updateBudget } from "../../actions/actions";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/dialog';
+import EmojiPicker from 'emoji-picker-react';
+import { Input } from '@/components/ui/input';
+import { DialogClose } from '@radix-ui/react-dialog';
+import { updateBudget } from '../../actions/actions';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function EditBudget({
   id,
@@ -37,7 +37,7 @@ export default function EditBudget({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size={"lg"} className="cursor-pointer">
+        <Button size={'lg'} className="cursor-pointer">
           <Edit2 /> EDIT
         </Button>
       </DialogTrigger>
@@ -51,10 +51,10 @@ export default function EditBudget({
             e.preventDefault();
             const st = await updateBudget(id, budgetName, amount, emoji);
             if (st == 0) {
-              toast.success("Successfully Edited Budget");
+              toast.success('Successfully Edited Budget');
               router.refresh();
             } else {
-              toast.error("Problem Editing Budget");
+              toast.error('Problem Editing Budget');
             }
           }}
         >
@@ -63,7 +63,7 @@ export default function EditBudget({
               <Button
                 type="button"
                 variant="outline"
-                size={"lg"}
+                size={'lg'}
                 className="text-lg"
                 onClick={() => setOpenEmojiDialog(!openEmojiDialog)}
               >
@@ -113,7 +113,7 @@ export default function EditBudget({
               <DialogClose asChild>
                 <Button
                   type="submit"
-                  className="cursor-pointer mt-5"
+                  className="mt-5 cursor-pointer"
                   disabled={!(budgetName && amount)}
                   onSubmit={(e) => e.preventDefault()}
                 >

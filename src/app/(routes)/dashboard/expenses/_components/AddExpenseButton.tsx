@@ -1,32 +1,26 @@
-"use client";
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { useFormStatus } from "react-dom";
+'use client';
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { useFormStatus } from 'react-dom';
 
-export default function AddExpenseButton({
-  name,
-  amount,
-}: {
-  name: string;
-  amount: string;
-}) {
+export default function AddExpenseButton({ name, amount }: { name: string; amount: string }) {
   const { pending } = useFormStatus();
 
   return (
     <Button
       type="submit"
-      className="cursor-pointer mt-3 w-[10rem]"
+      className="mt-3 w-[10rem] cursor-pointer"
       onSubmit={(e) => {
         e.preventDefault();
       }}
       disabled={!(name && amount)}
-      size={"lg"}
+      size={'lg'}
     >
       {pending ? (
         <div role="status">
           <svg
             aria-hidden="true"
-            className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+            className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +37,7 @@ export default function AddExpenseButton({
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        "Add Expense"
+        'Add Expense'
       )}
     </Button>
   );

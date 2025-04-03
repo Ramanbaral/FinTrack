@@ -1,13 +1,5 @@
-"use client";
-import {
-  BarChart,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Bar,
-  ResponsiveContainer,
-} from "recharts";
+'use client';
+import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from 'recharts';
 
 export default function ChartDashboard({
   budgetList,
@@ -43,9 +35,9 @@ export default function ChartDashboard({
   });
 
   return (
-    <div className="my-7 border rounded-lg p-5">
-      <h2 className="font-bold text-xl text-center">Recent Activity</h2>
-      <ResponsiveContainer width={"80%"} height={400}>
+    <div className="my-7 rounded-lg border p-5">
+      <h2 className="text-center text-xl font-bold">Recent Activity</h2>
+      <ResponsiveContainer width={'80%'} height={400}>
         <BarChart data={data}>
           <XAxis dataKey="name" />
           <YAxis />

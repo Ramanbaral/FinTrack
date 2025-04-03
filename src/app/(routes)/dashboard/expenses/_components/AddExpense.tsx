@@ -1,15 +1,15 @@
-"use client";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { createNewExpense } from "../../actions/actions";
-import { toast } from "sonner";
-import AddExpenseButton from "./AddExpenseButton";
-import { useRouter } from "next/navigation";
+'use client';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { createNewExpense } from '../../actions/actions';
+import { toast } from 'sonner';
+import AddExpenseButton from './AddExpenseButton';
+import { useRouter } from 'next/navigation';
 
 export default function AddExpense({ budgetId }: { budgetId: number }) {
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState('');
   const router = useRouter();
 
   return (
@@ -17,19 +17,17 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
       action={async () => {
         const st = await createNewExpense({ name, amount, budgetId });
         if (st == 0) {
-          toast.success("New Expense Added");
+          toast.success('New Expense Added');
           router.refresh();
         } else {
-          toast.error("Problem Creating New Expense");
+          toast.error('Problem Creating New Expense');
         }
-        setAmount("");
-        setName("");
+        setAmount('');
+        setName('');
       }}
     >
-      <div className="p-2 bg-slate-100 flex flex-col justify-center items-center gap-2 rounded-md border-2">
-        <p className="text-center text-primary text-xl font-semibold">
-          Create New Expense
-        </p>
+      <div className="flex flex-col items-center justify-center gap-2 rounded-md border-2 bg-slate-100 p-2">
+        <p className="text-primary text-center text-xl font-semibold">Create New Expense</p>
         <div className="mt-1">
           <Label htmlFor="budgetname" className="text-[1rem]">
             Expense Name

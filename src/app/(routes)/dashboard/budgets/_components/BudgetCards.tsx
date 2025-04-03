@@ -1,8 +1,8 @@
-import { prisma } from "@/lib/prisma";
-import CreateBudget from "./CreateBudget";
-import BudgetCard from "./BudgetCard";
-import { currentUser } from "@clerk/nextjs/server";
-import Link from "next/link";
+import { prisma } from '@/lib/prisma';
+import CreateBudget from './CreateBudget';
+import BudgetCard from './BudgetCard';
+import { currentUser } from '@clerk/nextjs/server';
+import Link from 'next/link';
 
 export default async function BudgetCards() {
   const user = await currentUser();
@@ -21,15 +21,13 @@ export default async function BudgetCards() {
   const amountSpentList: number[] = [];
   budgetList.forEach(async (budget) => {
     let amountSpent = 0;
-    budget.expenses.forEach(
-      (expense) => (amountSpent += parseInt(expense.amount))
-    );
+    budget.expenses.forEach((expense) => (amountSpent += parseInt(expense.amount)));
     amountSpentList.push(amountSpent);
   });
 
   return (
     <div className="mt-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <CreateBudget />
 
         {budgetList.map((budget, ind) => {
@@ -44,7 +42,7 @@ export default async function BudgetCards() {
               />
             </Link>
           );
-        })} 
+        })}
       </div>
     </div>
   );

@@ -1,22 +1,22 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { LogIn } from "lucide-react";
-import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+'use client';
+import { Button } from '@/components/ui/button';
+import { LogIn } from 'lucide-react';
+import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 
 export default function Hero() {
   const { isSignedIn } = useUser();
   return (
-    <div className="flex flex-col justify-center items-center gap-3 h-[90vh] bg-radial-(circle, rgba(238,174,202,1)0%,rgba(148,187,233,1) 100%)">
+    <div className="bg-radial-(circle, rgba(238,174,202,1)0%,rgba(148,187,233,1) 100%) flex h-[90vh] flex-col items-center justify-center gap-3">
       {/* hero main text  */}
       <p
-        className="font-bold text-5xl md:text-7xl lg:text-9xl animate-pulse delay-50"
+        className="animate-pulse text-5xl font-bold delay-50 md:text-7xl lg:text-9xl"
         style={{ animationIterationCount: 1 }}
       >
         Manage Your Expense
       </p>
       <p
-        className="font-bold text-5xl md:text-7xl lg:text-9xl animate-pulse delay-50"
+        className="animate-pulse text-5xl font-bold delay-50 md:text-7xl lg:text-9xl"
         style={{ animationIterationCount: 1 }}
       >
         Track Your Money
@@ -25,16 +25,13 @@ export default function Hero() {
       {/* hero sub text  */}
       <p className="text-1xl">Start creating your budget and save money</p>
 
-      <Button
-        size="lg"
-        className="bg-blue-600 hover:bg-blue-500 my-[2rem] cursor-pointer text-md"
-      >
+      <Button size="lg" className="text-md my-[2rem] cursor-pointer bg-blue-600 hover:bg-blue-500">
         {isSignedIn ? (
-          <Link href={"/dashboard"} className="flex gap-2 items-center">
+          <Link href={'/dashboard'} className="flex items-center gap-2">
             <span>Dashboard</span> <LogIn />
           </Link>
         ) : (
-          <Link href={"/sign-up"}>Create New Account</Link>
+          <Link href={'/sign-up'}>Create New Account</Link>
         )}
       </Button>
     </div>
