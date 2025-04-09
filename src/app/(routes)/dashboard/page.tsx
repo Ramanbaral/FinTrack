@@ -8,22 +8,26 @@ import Link from 'next/link';
 export default async function Dashboard() {
   const user = await currentUser();
 
-  const budgets = await prisma.budget.findMany({
-    where: {
-      createdBy: {
-        equals: user?.primaryEmailAddress?.emailAddress,
+  try {
+    const budgets = await prisma.budget.findMany({
+      where: {
+        createdBy: {
+          equals: user?.primaryEmailAddress?.emailAddress,
+        },
       },
-    },
-    include: {
-      expenses: true,
-    },
-  });
-  const amountSpentList: number[] = [];
-  budgets.forEach((budget) => {
-    let amountSpent = 0;
-    budget.expenses.forEach((exp) => (amountSpent += +exp.amount));
-    amountSpentList.push(amountSpent);
-  });
+      include: {
+        expenses: true,
+      },
+    });
+    const amountSpentList: number[] = [];
+    budgets.forEach((budget) => {
+      let amountSpent = 0;
+      budget.expenses.forEach((exp) => (amountSpent += +exp.amount));
+      amountSpentList.push(amountSpent);
+    });
+  } catch (err) {
+    console.log(err);
+  }
 
   return (
     <div className="p-5">
