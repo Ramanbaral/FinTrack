@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import AddExpenseButton from './AddExpenseButton';
 import { useRouter } from 'next/navigation';
 
-export default function AddExpense({ budgetId }: { budgetId: number }) {
+export default function AddExpense({ budgetId, budgetAmount, totalAmountSpent }: { budgetId: number, budgetAmount: number, totalAmountSpent: number  }) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
   const router = useRouter();
@@ -15,6 +15,10 @@ export default function AddExpense({ budgetId }: { budgetId: number }) {
   return (
     <form
       action={async () => {
+        if((totalAmountSpent + parseFloat(amount)) > budgetAmount) {
+          toast.error('Expense Amount exceeds Budget Amount\nIncrease Budget Amount')
+          return;
+        }
         const st = await createNewExpense({ name, amount, budgetId });
         if (st == 0) {
           toast.success('New Expense Added');
