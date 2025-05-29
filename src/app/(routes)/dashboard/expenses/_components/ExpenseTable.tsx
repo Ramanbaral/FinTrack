@@ -16,7 +16,6 @@ export default function ExpenseTable({
     budgetId: number;
   }[];
 }) {
-  // const [expenseList, setExpenseList] = useState(expenses);
   const router = useRouter();
 
   return (
