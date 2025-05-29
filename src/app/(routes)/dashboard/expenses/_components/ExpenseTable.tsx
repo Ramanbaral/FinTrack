@@ -3,6 +3,7 @@ import { Trash2 } from 'lucide-react';
 import { deleteExpense } from '../../actions/actions';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import formatDate from '@/lib/formatDate';
 
 export default function ExpenseTable({
   expenses,
@@ -37,9 +38,7 @@ export default function ExpenseTable({
                 <tr className="*:text-gray-900 *:first:font-medium" key={expense.id}>
                   <td className="px-3 py-2 whitespace-nowrap">{expense.name}</td>
                   <td className="px-3 py-2 whitespace-nowrap">₹ {expense.amount}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    {expense.createdAt.toLocaleDateString()}
-                  </td>
+                  <td className="px-3 py-2 whitespace-nowrap">{formatDate(expense.createdAt)}</td>
                   <td className="px-3 py-2 whitespace-nowrap">
                     <Trash2
                       className="cursor-pointer text-red-500"
