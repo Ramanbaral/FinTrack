@@ -1,36 +1,37 @@
 'use client';
-import { Trash2 } from 'lucide-react';
-import { deleteExpense } from '../../actions/actions';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+
 import formatDate from '@/lib/formatDate';
 import { useCurrencyStore } from '@/providers/currency-store-provider';
 
-export default function ExpenseTable({
+export default function AllExpenseTable({
   expenses,
 }: {
-  expenses: {
-    name: string;
+  expenses: ({
+    budget: {
+      name: string;
+    };
+  } & {
     id: number;
+    name: string;
     amount: string;
     createdAt: Date;
     updatedAt: Date;
     budgetId: number;
-  }[];
+  })[];
 }) {
-  const router = useRouter();
+
   const {currencySymbol} = useCurrencyStore((state) => state)
 
   return (
     <>
-      <div className="max-h-96 overflow-x-auto">
+      <div className="mx-10 mt-5 overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-gray-200">
           <thead className="sticky top-0 bg-white ltr:text-left rtl:text-right">
             <tr className="rounded-md bg-slate-200 font-bold *:text-gray-900">
               <th className="px-3 py-2 whitespace-nowrap">Name</th>
               <th className="px-3 py-2 whitespace-nowrap">Amount</th>
               <th className="px-3 py-2 whitespace-nowrap">Date</th>
-              <th className="px-3 py-2 whitespace-nowrap">Action</th>
+              <th className="px-3 py-2 whitespace-nowrap">Budget</th>
             </tr>
           </thead>
 
@@ -39,22 +40,9 @@ export default function ExpenseTable({
               return (
                 <tr className="*:text-gray-900 *:first:font-medium" key={expense.id}>
                   <td className="px-3 py-2 whitespace-nowrap">{expense.name}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">{currencySymbol} {expense.amount}</td>
+                  <td className="px-3 py-2 font-semibold whitespace-nowrap">{currencySymbol} {expense.amount}</td>
                   <td className="px-3 py-2 whitespace-nowrap">{formatDate(expense.createdAt)}</td>
-                  <td className="px-3 py-2 whitespace-nowrap">
-                    <Trash2
-                      className="cursor-pointer text-red-500"
-                      onClick={async () => {
-                        const st = await deleteExpense(expense.id);
-                        if (st == 0) {
-                          toast.success('Expense Deleted.');
-                          router.refresh();
-                        } else {
-                          toast.error('Problem Deleting Expense.');
-                        }
-                      }}
-                    />
-                  </td>
+                  <td className="px-3 py-2 whitespace-nowrap">{expense.budget.name}</td>
                 </tr>
               );
             })}

@@ -1,4 +1,6 @@
+'use client'
 import { PiggyBank, ReceiptIndianRupee, Wallet2 } from 'lucide-react';
+import { useCurrencyStore } from '@/providers/currency-store-provider';
 
 export default function InfoCard({
   budgetList,
@@ -29,12 +31,15 @@ export default function InfoCard({
     budget.expenses.forEach((exp) => (totalAmountSpent += +exp.amount));
   });
 
+  // console.log(currency, currencySymbol);
+  const {currency, currencySymbol} = useCurrencyStore((state) => state)
+
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <div className="my-4 flex items-center justify-between rounded-md border-2 bg-slate-200 p-8">
         <div>
           <h2 className="text-primary text-xl font-semibold">Total Budget</h2>
-          <h2 className="text-[2rem] font-bold">₹ {totalBudgetAmount}</h2>
+          <h2 className="text-[2rem] font-bold">{currencySymbol} {totalBudgetAmount}</h2>
         </div>
         <div className="bg-primary rounded-full p-4">
           <PiggyBank size={32} color="white" />
@@ -44,7 +49,7 @@ export default function InfoCard({
       <div className="my-4 flex items-center justify-between rounded-md border-2 bg-slate-200 p-8">
         <div>
           <h2 className="text-primary text-xl font-semibold">Total Amount Spent</h2>
-          <h2 className="text-[2rem] font-bold">₹ {totalAmountSpent}</h2>
+          <h2 className="text-[2rem] font-bold">{currencySymbol} {totalAmountSpent}</h2>
         </div>
         <div className="bg-primary rounded-full p-4">
           <ReceiptIndianRupee size={32} color="white" />

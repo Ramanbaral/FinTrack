@@ -5,6 +5,8 @@ import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
+import { CurrencyStoreProvider } from '@/providers/currency-store-provider';
+
 const outfit = Outfit({
   variable: '--font-outfit',
   subsets: ['latin'],
@@ -28,7 +30,7 @@ export default function RootLayout({
         <body className={`${outfit.variable}`}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <Toaster richColors />
-            {children}
+            <CurrencyStoreProvider>{children}</CurrencyStoreProvider>
           </ThemeProvider>
         </body>
       </html>

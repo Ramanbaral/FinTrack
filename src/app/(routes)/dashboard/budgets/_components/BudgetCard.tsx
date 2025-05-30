@@ -1,3 +1,7 @@
+'use client'
+
+import { useCurrencyStore } from "@/providers/currency-store-provider";
+
 export default function BudgetCard({
   name,
   amount,
@@ -13,6 +17,8 @@ export default function BudgetCard({
 }) {
   const amountSpentPercentage = (amountSpent / parseInt(amount)) * 100;
 
+  const {currencySymbol} = useCurrencyStore((state) => state)
+
   return (
     <div className="cursor-pointer rounded-md border-2 bg-slate-100 p-5">
       <div className="flex justify-between">
@@ -25,14 +31,14 @@ export default function BudgetCard({
         </div>
 
         <div>
-          <span className="text-primary text-[1.4rem] font-semibold">₹ {amount}</span>
+          <span className="text-primary text-[1.4rem] font-semibold">{currencySymbol} {amount}</span>
         </div>
       </div>
 
       <div className="mt-5">
         <div className="flex items-center justify-between text-[1.15rem]">
-          <p className="text-red-400">₹ {amountSpent} Spent</p>
-          <p className="text-green-400">₹ {parseInt(amount) - amountSpent} Remaining</p>
+          <p className="text-red-400">{currencySymbol} {amountSpent} Spent</p>
+          <p className="text-green-400">{currencySymbol} {parseInt(amount) - amountSpent} Remaining</p>
         </div>
 
         <div className="mt-2 h-3 w-full rounded-full bg-green-400">
