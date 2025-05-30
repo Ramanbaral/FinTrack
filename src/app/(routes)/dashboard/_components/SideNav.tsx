@@ -12,28 +12,33 @@ export default function SideNav() {
       name: 'Dashboard',
       icon: LayoutGrid,
       path: '/dashboard',
+      matchPath: '/dashboard',
     },
     {
       id: 2,
       name: 'Budgets',
       icon: PiggyBank,
       path: '/dashboard/budgets',
+      matchPath: '/dashboard/budgets',
     },
     {
       id: 3,
       name: 'Expenses',
       icon: ReceiptText,
-      path: '/dashboard/expenses',
+      path: '/dashboard/expenses?page=1',
+      matchPath: '/dashboard/expenses',
     },
     {
       id: 4,
       name: 'Upgrade',
       icon: ShieldCheck,
-      path: '/dashboard/upgrade',
+      path: '#',
+      pamatchPathth: '/dashboard/upgrade',
     },
   ];
 
   const path = usePathname();
+  console.log(path);
 
   return (
     <div className="flex h-screen flex-col items-start border bg-gray-100 p-4 shadow-sm">
@@ -48,7 +53,7 @@ export default function SideNav() {
             <Link href={menuItem.path} key={menuItem.id}>
               <div
                 className={`hover:text-primary hover:bg-sidebar-primary-foreground mb-2 flex cursor-pointer items-center gap-2 rounded-md p-5 font-medium text-gray-500 hover:font-semibold ${
-                  menuItem.path === path &&
+                  menuItem.matchPath === path &&
                   `text-primary bg-sidebar-primary-foreground font-semibold`
                 }`}
               >

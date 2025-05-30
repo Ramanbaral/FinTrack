@@ -1,10 +1,23 @@
-export default function Pagination() {
+'use client';
+
+import Link from 'next/link';
+
+export default function Pagination({
+  pageNumber,
+  totalPages,
+}: {
+  pageNumber: number;
+  totalPages: number;
+}) {
   return (
-    <ul className="flex justify-center gap-3 text-gray-900">
+    <ul className="my-5 flex justify-center gap-3 text-gray-900">
       <li>
-        <a
-          href="#"
-          className="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180"
+        <Link
+          href={{
+            pathname: '/dashboard/expenses',
+            query: { page: pageNumber - 1 },
+          }}
+          className={`grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180 ${pageNumber === 1 ? 'hidden' : ''}`}
           aria-label="Previous page"
         >
           <svg
@@ -19,15 +32,20 @@ export default function Pagination() {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </Link>
       </li>
 
-      <li className="text-sm/8 font-medium tracking-widest">2/12</li>
+      <li className="text-sm/8 font-medium tracking-widest">
+        {pageNumber}/{totalPages}
+      </li>
 
       <li>
-        <a
-          href="#"
-          className="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180"
+        <Link
+          href={{
+            pathname: '/dashboard/expenses',
+            query: { page: pageNumber + 1 },
+          }}
+          className={`grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180 ${pageNumber === totalPages ? 'hidden' : ''}`}
           aria-label="Next page"
         >
           <svg
@@ -42,7 +60,7 @@ export default function Pagination() {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </Link>
       </li>
     </ul>
   );

@@ -19,8 +19,7 @@ export default function AllExpenseTable({
     budgetId: number;
   })[];
 }) {
-
-  const {currencySymbol} = useCurrencyStore((state) => state)
+  const { currencySymbol } = useCurrencyStore((state) => state);
 
   return (
     <>
@@ -40,7 +39,9 @@ export default function AllExpenseTable({
               return (
                 <tr className="*:text-gray-900 *:first:font-medium" key={expense.id}>
                   <td className="px-3 py-2 whitespace-nowrap">{expense.name}</td>
-                  <td className="px-3 py-2 font-semibold whitespace-nowrap">{currencySymbol} {expense.amount}</td>
+                  <td className="px-3 py-2 font-semibold whitespace-nowrap">
+                    {currencySymbol} {expense.amount}
+                  </td>
                   <td className="px-3 py-2 whitespace-nowrap">{formatDate(expense.createdAt)}</td>
                   <td className="px-3 py-2 whitespace-nowrap">{expense.budget.name}</td>
                 </tr>
