@@ -55,10 +55,10 @@ export default function ParticlesBackground() {
       },
       particles: {
         color: {
-          value: '#ffffff',
+          value: '#000000',
         },
         links: {
-          color: '#ffffff',
+          color: '#000000',
           distance: 150,
           enable: true,
           opacity: 0.5,
@@ -97,7 +97,7 @@ export default function ParticlesBackground() {
 
   if (init) {
     return (
-      <div className="absolute inset-0 z-[-1]" >
+      <div className="absolute inset-0 z-[-1]">
         <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
       </div>
     );

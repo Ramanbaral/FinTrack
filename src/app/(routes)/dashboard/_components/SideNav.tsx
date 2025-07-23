@@ -43,7 +43,7 @@ export default function SideNav() {
     <div className="flex h-screen flex-col items-start border bg-gray-100 p-4 shadow-sm">
       <div className="flex items-center gap-1">
         <Image src={'/logo.png'} alt="LOGO" width={'100'} height={'100'} />
-        <p className="text-[1.7rem] font-extrabold text-blue-500">FinTrack</p>
+        <p className="text-primary text-[1.7rem] font-extrabold">FinTrack</p>
       </div>
 
       <div className="mt-10">

@@ -9,7 +9,7 @@ export default function Header() {
   const { isSignedIn } = useUser();
 
   return (
-    <div className="flex h-[10vh] items-center justify-between px-7 shadow-sm z-10">
+    <div className="z-10 flex h-[10vh] items-center justify-between px-7 shadow-sm">
       <div className="flex items-center gap-2">
         <Image src={'/logo.png'} alt="LOGO" width={100} height={100} />
         <p className="text-[1.7rem] font-extrabold text-blue-500">FinTrack</p>

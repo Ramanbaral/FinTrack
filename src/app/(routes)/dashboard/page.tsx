@@ -27,7 +27,7 @@ export default async function Dashboard() {
     });
 
     return (
-      <div className="p-5">
+      <div className="bg-white p-5">
         <div className="mb-2">
           <h2 className="text-3xl font-semibold">
             Hi, {user?.fullName} {'  '} 👋
@@ -37,6 +37,8 @@ export default async function Dashboard() {
         {budgets.length != 0 ? (
           <InfoCards budgetList={budgets} />
         ) : (
+          // <InfoCards budgetList={budgets} />
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((i, ind) => {
               return (

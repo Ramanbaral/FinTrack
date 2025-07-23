@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Outfit } from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
@@ -28,10 +27,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${outfit.variable}`}>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <Toaster richColors />
-            <CurrencyStoreProvider>{children}</CurrencyStoreProvider>
-          </ThemeProvider>
+          <Toaster richColors />
+          <CurrencyStoreProvider>{children}</CurrencyStoreProvider>
         </body>
       </html>
     </ClerkProvider>
