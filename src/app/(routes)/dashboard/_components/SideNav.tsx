@@ -38,7 +38,6 @@ export default function SideNav() {
   ];
 
   const path = usePathname();
-  console.log(path);
 
   return (
     <div className="flex h-screen flex-col items-start border bg-gray-100 p-4 shadow-sm">

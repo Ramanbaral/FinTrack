@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { LogIn } from 'lucide-react';
+import { ArrowRightIcon, LogIn } from 'lucide-react';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 
@@ -25,13 +25,18 @@ export default function Hero() {
       {/* hero sub text  */}
       <p className="text-1xl">Start creating your budget and save money</p>
 
-      <Button size="lg" className="text-md my-[2rem] cursor-pointer bg-blue-600 hover:bg-blue-500">
+      <Button size="lg" className="text-md text-white my-[2rem] cursor-pointer bg-blue-600 hover:bg-blue-500">
         {isSignedIn ? (
           <Link href={'/dashboard'} className="flex items-center gap-2">
             <span>Dashboard</span> <LogIn />
           </Link>
         ) : (
-          <Link href={'/sign-up'}>Create New Account</Link>
+          <>
+            <Link href={'/sign-up'} className='flex items-center gap-2'>
+              <span>Create New Account</span>
+              <ArrowRightIcon />
+            </Link>
+          </>
         )}
       </Button>
     </div>
